@@ -1,0 +1,20 @@
+# gradle
+build/
+.gradle/
+
+# eclipse
+*/bin
+.settings/
+.classpath
+.project
+.cproject
+.externalToolBuilders/
+
+# intellij
+*.ids
+*.iml
+.idea/
+*.ipr
+*.iws
+classes/
+/out/
