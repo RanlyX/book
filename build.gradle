@@ -8,9 +8,6 @@ plugins {
     id 'idea'
 }
 
-//sourceSets.main.java.srcDirs = ['src']
-//mainClassName = "com.ranly.book.BookApplication"
-
 group = 'com.ranly'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
@@ -24,7 +21,6 @@ dependencies {
 	implementation 'com.google.code.gson:gson:2.8.9'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	runtimeOnly 'com.h2database:h2'
-	runtimeOnly 'org.postgresql:postgresql'
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
