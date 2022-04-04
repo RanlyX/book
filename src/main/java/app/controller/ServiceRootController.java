@@ -1,21 +1,23 @@
 package app.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.JsonObject;
 
+import app.ServicePath;
+
 @RestController
 public class ServiceRootController {
-	@RequestMapping(method = RequestMethod.GET, value = "/")
+	@GetMapping(value = ServicePath.ROOT_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
 	public String getServiceRoot() {
 		JsonObject entry = new JsonObject();
 		entry.addProperty("Path", "/api/v1");
 		return entry.toString();
 	}
 
-	@RequestMapping(method = RequestMethod.GET, value = "/api/v1")
+	@GetMapping(value = ServicePath.API_ENTRY, produces = MediaType.APPLICATION_JSON_VALUE)
 	public String getApiEntry() {
 		JsonObject entry = new JsonObject();
 		entry.addProperty("Path", "/api/v1/book");
