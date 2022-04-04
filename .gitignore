@@ -1,6 +1,7 @@
 # gradle
 build/
 .gradle/
+target/*
 
 # eclipse
 */bin
@@ -18,3 +19,4 @@ build/
 *.iws
 classes/
 /out/
+
