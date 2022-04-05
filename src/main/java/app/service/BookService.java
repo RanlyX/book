@@ -1,20 +1,37 @@
 package app.service;
 
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import app.model.Author;
 import app.model.Book;
-import app.model.Publisher;
-import app.model.Translator;
+import app.model.render.BookRender;
+import app.repository.BookRepository;
 
 @Service
 public class BookService {
 
-	public Book getBook() {
-		return new Book("Book Name", new Author("Author. Name."),
-				new Translator("Translator. Name."), "ISBN-CODE-123-456-789",
-				new Publisher("Publisher. Name."), new Date(), 100.0);
+	private final BookRepository bookRepository;
+	private final BookRender bookRender;
+
+	@Autowired
+	public BookService(BookRepository bookRepository, BookRender bookRender) {
+		this.bookRepository = bookRepository;
+		this.bookRender = bookRender;
+	}
+
+	public Book getBook(Long id) {
+		return bookRepository.getById(id);
+	}
+
+	public List<app.model.view.Book> getBooks() {
+		List<Book> books = bookRepository.findAll();
+		List<app.model.view.Book> bookViews = new ArrayList<>();
+		for (Book book : books) {
+			bookViews.add(this.bookRender.render(book));
+		}
+		return bookViews;
 	}
 }
