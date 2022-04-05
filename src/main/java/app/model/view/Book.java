@@ -70,11 +70,11 @@ public class Book {
 		return this;
 	}
 
-	public Date getPublishDate() {
+	public Date getDateOfPublish() {
 		return dateOfPublish;
 	}
 
-	public Book setPublishDate(Date dateOfPublish) {
+	public Book setDateOfPublish(Date dateOfPublish) {
 		this.dateOfPublish = dateOfPublish;
 		return this;
 	}

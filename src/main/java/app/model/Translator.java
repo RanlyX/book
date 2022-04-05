@@ -10,9 +10,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "translator")
+@Table(name = "translator", uniqueConstraints = { @UniqueConstraint(columnNames = { "name" }) })
 public class Translator {
 
 	private Long id;
@@ -56,4 +57,5 @@ public class Translator {
 		this.books = books;
 		return this;
 	}
+
 }
