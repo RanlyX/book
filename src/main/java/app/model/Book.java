@@ -43,17 +43,19 @@ public class Book {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public Book setId(Long id) {
 		this.id = id;
+		return this;
 	}
 
-	@Column(name = "name")
+	@Column(name = "name", nullable = false)
 	public String getName() {
 		return name;
 	}
 
-	public void setName(String name) {
+	public Book setName(String name) {
 		this.name = name;
+		return this;
 	}
 
 	@OneToOne(fetch = FetchType.LAZY)
@@ -61,8 +63,9 @@ public class Book {
 		return author;
 	}
 
-	public void setAuthor(Author author) {
+	public Book setAuthor(Author author) {
 		this.author = author;
+		return this;
 	}
 
 	@OneToOne(fetch = FetchType.LAZY)
@@ -70,8 +73,9 @@ public class Book {
 		return translator;
 	}
 
-	public void setTranslator(Translator translator) {
+	public Book setTranslator(Translator translator) {
 		this.translator = translator;
+		return this;
 	}
 
 	@Column(name = "isbn")
@@ -79,8 +83,9 @@ public class Book {
 		return isbn;
 	}
 
-	public void setIsbn(String isbn) {
+	public Book setIsbn(String isbn) {
 		this.isbn = isbn;
+		return this;
 	}
 
 	@OneToOne(fetch = FetchType.LAZY)
@@ -88,17 +93,19 @@ public class Book {
 		return publisher;
 	}
 
-	public void setPublisher(Publisher publisher) {
+	public Book setPublisher(Publisher publisher) {
 		this.publisher = publisher;
+		return this;
 	}
 
 	@Column(name = "publish_date")
-	public Date getPublishDate() {
+	public Date getDateOfPublish() {
 		return dateOfPublish;
 	}
 
-	public void setPublishDate(Date dateOfPublish) {
+	public Book setDateOfPublish(Date dateOfPublish) {
 		this.dateOfPublish = dateOfPublish;
+		return this;
 	}
 
 	@Column(name = "price")
@@ -106,7 +113,8 @@ public class Book {
 		return price;
 	}
 
-	public void setPrice(Double price) {
+	public Book setPrice(Double price) {
 		this.price = price;
+		return this;
 	}
 }
