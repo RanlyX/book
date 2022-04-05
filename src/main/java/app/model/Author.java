@@ -14,14 +14,14 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "author")
 public class Author {
-	
+
 	private Long id;
 	private String name;
 	private Set<Book> books;
-	
+
 	public Author() {
 	}
-	
+
 	public Author(String name) {
 		this.name = name;
 	}
