@@ -3,7 +3,9 @@ package app.model.view;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+@JsonPropertyOrder({ "Id", "Books", "Name" })
 public class Author {
 
 	public Author() {

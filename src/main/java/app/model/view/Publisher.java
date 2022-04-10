@@ -3,9 +3,11 @@ package app.model.view;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+@JsonPropertyOrder({ "Id", "Books", "Name" })
 public class Publisher {
-	
+
 	public Publisher() {
 	}
 
@@ -14,7 +16,7 @@ public class Publisher {
 		this.name = name;
 		this.books = books;
 	}
-	
+
 	@JsonProperty("Id")
 	private Long id;
 
@@ -41,7 +43,7 @@ public class Publisher {
 
 	@JsonProperty("Books")
 	private List<Long> books;
-	
+
 	public List<Long> getBooks() {
 		return books;
 	}
@@ -50,4 +52,5 @@ public class Publisher {
 		this.books = books;
 		return this;
 	}
+
 }
