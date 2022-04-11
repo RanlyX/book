@@ -2,6 +2,7 @@
 build/
 .gradle/
 target/*
+bin/*
 
 # eclipse
 */bin

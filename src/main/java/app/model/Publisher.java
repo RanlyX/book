@@ -14,6 +14,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "publisher")
 public class Publisher {
+
 	private Long id;
 	private String name;
 	private Set<Book> books;
@@ -55,4 +56,5 @@ public class Publisher {
 		this.books = books;
 		return this;
 	}
+
 }
