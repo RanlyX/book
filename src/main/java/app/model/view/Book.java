@@ -2,37 +2,29 @@ package app.model.view;
 
 import java.util.Date;
 
-public class Book {
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-	private String name;
-	private String author;
-	private String translator;
-	private String isbn;
-	private String publisher;
-	private Date dateOfPublish;
-	private Double price;
+@JsonPropertyOrder({ "Id", "Author", "DateOfPublish", "Isbn", "Name", "Price", "Publisher", "Translator" })
+public class Book {
 
 	public Book() {
 	}
 
-	public Book(String name, String author, String translator, String isbn, String publisher, Date dateOfPublish,
-			Double price) {
-		this.name = name;
-		this.translator = translator;
-		this.isbn = isbn;
-		this.publisher = publisher;
+	public Book(Long id, String author, Date dateOfPublish, String isbn, String name, Double price, String publisher,
+			String translator) {
+		this.id = id;
+		this.author = author;
 		this.dateOfPublish = dateOfPublish;
-		this.price = price;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public Book setName(String name) {
+		this.isbn = isbn;
 		this.name = name;
-		return this;
+		this.price = price;
+		this.publisher = publisher;
+		this.translator = translator;
 	}
+
+	@JsonProperty("Author")
+	private String author;
 
 	public String getAuthor() {
 		return author;
@@ -43,6 +35,33 @@ public class Book {
 		return this;
 	}
 
+	@JsonProperty("Id")
+	private Long id;
+
+	public Long getId() {
+		return id;
+	}
+
+	public Book setId(Long id) {
+		this.id = id;
+		return this;
+	}
+
+	@JsonProperty("Name")
+	private String name;
+
+	public String getName() {
+		return name;
+	}
+
+	public Book setName(String name) {
+		this.name = name;
+		return this;
+	}
+
+	@JsonProperty("Translator")
+	private String translator;
+
 	public String getTranslator() {
 		return translator;
 	}
@@ -51,6 +70,9 @@ public class Book {
 		this.translator = translator;
 		return this;
 	}
+
+	@JsonProperty("Isbn")
+	private String isbn;
 
 	public String getIsbn() {
 		return isbn;
@@ -61,6 +83,9 @@ public class Book {
 		return this;
 	}
 
+	@JsonProperty("Publisher")
+	private String publisher;
+
 	public String getPublisher() {
 		return publisher;
 	}
@@ -69,6 +94,9 @@ public class Book {
 		this.publisher = publisher;
 		return this;
 	}
+
+	@JsonProperty("DateOfPublish")
+	private Date dateOfPublish;
 
 	public Date getDateOfPublish() {
 		return dateOfPublish;
@@ -79,6 +107,9 @@ public class Book {
 		return this;
 	}
 
+	@JsonProperty("Price")
+	private Double price;
+
 	public Double getPrice() {
 		return price;
 	}
@@ -87,4 +118,5 @@ public class Book {
 		this.price = price;
 		return this;
 	}
+
 }

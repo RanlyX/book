@@ -4,7 +4,8 @@ public class ServicePath {
 
 	// Service entry
 	public static final String ROOT_PATH = "/";
-	public static final String API_ENTRY = ROOT_PATH + "api/v1";
+	public static final String API_ROOT = ROOT_PATH + "api";
+	public static final String API_ENTRY = API_ROOT + "/v1";
 
 	// book
 	public static final String BOOK_COLLECTION = API_ENTRY + "/books";
