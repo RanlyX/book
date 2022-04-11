@@ -10,17 +10,26 @@ import app.ServicePath;
 
 @RestController
 public class ServiceRootController {
+
 	@GetMapping(value = ServicePath.ROOT_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
 	public String getServiceRoot() {
 		JsonObject entry = new JsonObject();
-		entry.addProperty("Path", "/api/v1");
+		entry.addProperty("ApiRoot", ServicePath.API_ROOT);
+		return entry.toString();
+	}
+
+	@GetMapping(value = ServicePath.API_ROOT, produces = MediaType.APPLICATION_JSON_VALUE)
+	public String getApiRoot() {
+		JsonObject entry = new JsonObject();
+		entry.addProperty("ApiEntry", ServicePath.API_ENTRY);
 		return entry.toString();
 	}
 
 	@GetMapping(value = ServicePath.API_ENTRY, produces = MediaType.APPLICATION_JSON_VALUE)
 	public String getApiEntry() {
 		JsonObject entry = new JsonObject();
-		entry.addProperty("Path", "/api/v1/book");
+		entry.addProperty("BookCollection", ServicePath.BOOK_COLLECTION);
 		return entry.toString();
 	}
+
 }
