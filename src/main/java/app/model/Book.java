@@ -15,6 +15,7 @@ import javax.persistence.UniqueConstraint;
 @Entity
 @Table(name = "book", uniqueConstraints = { @UniqueConstraint(columnNames = { "isbn" }) })
 public class Book {
+
 	private Long id;
 	private String name;
 	private Author author;
@@ -117,4 +118,5 @@ public class Book {
 		this.price = price;
 		return this;
 	}
+
 }
