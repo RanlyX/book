@@ -69,8 +69,8 @@ public class BookService {
 		return this.bookRender.render(bookRepository.save(book.setAuthor(author).setPublisher(publisher).setTranslator(translator)));
 	}
 
-	public Book getBook(Long id) {
-		return bookRepository.getById(id);
+	public app.model.view.Book getBook(Long id) {
+		return this.bookRender.render(bookRepository.getById(id));
 	}
 
 	public List<app.model.view.Book> getBooks() {
@@ -80,6 +80,10 @@ public class BookService {
 			bookViews.add(this.bookRender.render(book));
 		}
 		return bookViews;
+	}
+	
+	public void deleteBook(Long id) {
+		bookRepository.deleteById(id);
 	}
 
 }
