@@ -9,6 +9,7 @@ public class ServicePath {
 
 	// book
 	public static final String BOOK_COLLECTION = API_ENTRY + "/books";
+	public static final String BOOK = BOOK_COLLECTION + "/{bookId}";
 	// TODO: path about book
 
 	// publisher
