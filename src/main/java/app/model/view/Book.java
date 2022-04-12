@@ -15,6 +15,8 @@ public class Book {
 			Translator translator) {
 		this.id = id;
 		this.author = author;
+		this.translator = translator;
+		this.isbn = isbn;
 		this.dateOfPublish = dateOfPublish;
 		this.isbn = isbn;
 		this.name = name;
