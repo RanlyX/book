@@ -17,6 +17,7 @@ import app.repository.AuthorRepository;
 import app.repository.BookRepository;
 import app.repository.PublisherRepository;
 import app.repository.TranslatorRepository;
+import app.validator.CreateBookRequestValidator;
 
 @Service
 public class BookService {
@@ -61,7 +62,9 @@ public class BookService {
 		return this.translatorRepository.save(translator);
 	}
 
-	public app.model.view.Book addBook(CreateBookRequest createBookRequest) {
+	public app.model.view.Book addBook(CreateBookRequest createBookRequest) throws Exception {
+		CreateBookRequestValidator cbrValidator = new CreateBookRequestValidator();
+		cbrValidator.checkDtoProperty(createBookRequest);
 		Book book = createBookAdapter.convert(createBookRequest);
 		Author author = this.addAuthor(new Author(book.getAuthor().getName()));
 		Publisher publisher = this.addPublisher(new Publisher(book.getPublisher().getName()));
