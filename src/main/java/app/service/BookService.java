@@ -64,7 +64,7 @@ public class BookService {
 
 	public app.model.view.Book addBook(CreateBookRequest createBookRequest) throws Exception {
 		CreateBookRequestValidator cbrValidator = new CreateBookRequestValidator();
-		cbrValidator.checkDtoProperty(createBookRequest);
+		cbrValidator.checkInputFieldProperty(createBookRequest);
 		Book book = createBookAdapter.convert(createBookRequest);
 		Author author = this.addAuthor(new Author(book.getAuthor().getName()));
 		Publisher publisher = this.addPublisher(new Publisher(book.getPublisher().getName()));
