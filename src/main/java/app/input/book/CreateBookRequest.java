@@ -5,38 +5,38 @@ import java.util.Optional;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import app.property.DtoProperty;
-import app.property.DtoProperty.CheckRange;
-import app.property.DtoProperty.Type;
+import app.property.InputFieldProperty;
+import app.property.InputFieldProperty.CheckRange;
+import app.property.InputFieldProperty.Type;
 
 public class CreateBookRequest {
 
 	@JsonProperty("Author")
-	@DtoProperty(type = Type.STRING, min = 1, checkRange = CheckRange.LOWER, required = true)
+	@InputFieldProperty(type = Type.STRING, min = 1, checkRange = CheckRange.LOWER, required = true)
 	private Optional<String> author;
 
 	@JsonProperty("DateOfPublish")
-	@DtoProperty(type = Type.DATE, required = true)
+	@InputFieldProperty(type = Type.DATE, required = true)
 	private Optional<Date> dateOfPublish;
 
 	@JsonProperty("Isbn")
-	@DtoProperty(type = Type.STRING, min = 1, checkRange = CheckRange.LOWER, required = true)
+	@InputFieldProperty(type = Type.STRING, min = 1, checkRange = CheckRange.LOWER, required = true)
 	private Optional<String> isbn;
 
 	@JsonProperty("Name")
-	@DtoProperty(type = Type.STRING, min = 1, checkRange = CheckRange.LOWER, required = true)
+	@InputFieldProperty(type = Type.STRING, min = 1, checkRange = CheckRange.LOWER, required = true)
 	private Optional<String> name;
 
 	@JsonProperty("Price")
-	@DtoProperty(type = Type.DOUBLE, min = Double.MIN_VALUE, max = Double.MAX_VALUE, checkRange = CheckRange.BOTH, required = false)
+	@InputFieldProperty(type = Type.DOUBLE, min = Double.MIN_VALUE, max = Double.MAX_VALUE, checkRange = CheckRange.BOTH, required = false)
 	private Optional<Double> price;
 
 	@JsonProperty("Publisher")
-	@DtoProperty(type = Type.STRING, min = 1, checkRange = CheckRange.LOWER, required = true)
+	@InputFieldProperty(type = Type.STRING, min = 1, checkRange = CheckRange.LOWER, required = true)
 	private Optional<String> publisher;
 
 	@JsonProperty("Translator")
-	@DtoProperty(type = Type.STRING, min = 1, checkRange = CheckRange.LOWER, required = false)
+	@InputFieldProperty(type = Type.STRING, min = 1, checkRange = CheckRange.LOWER, required = false)
 	private Optional<String> translator;
 
 	public CreateBookRequest() {
