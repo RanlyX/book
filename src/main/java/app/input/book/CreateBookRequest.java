@@ -3,19 +3,54 @@ package app.input.book;
 import java.util.Date;
 import java.util.Optional;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import app.property.DtoProperty;
+import app.property.DtoProperty.CheckRange;
+import app.property.DtoProperty.Type;
+
 public class CreateBookRequest {
 
+	@JsonProperty("Author")
+	@DtoProperty(type = Type.STRING, min = 1, checkRange = CheckRange.LOWER, required = true)
+	private Optional<String> author;
+
+	@JsonProperty("DateOfPublish")
+	@DtoProperty(type = Type.DATE, required = true)
+	private Optional<Date> dateOfPublish;
+
+	@JsonProperty("Isbn")
+	@DtoProperty(type = Type.STRING, min = 1, checkRange = CheckRange.LOWER, required = true)
+	private Optional<String> isbn;
+
+	@JsonProperty("Name")
+	@DtoProperty(type = Type.STRING, min = 1, checkRange = CheckRange.LOWER, required = true)
 	private Optional<String> name;
 
-	public Optional<String> getName() {
-		return name;
+	@JsonProperty("Price")
+	@DtoProperty(type = Type.DOUBLE, min = Double.MIN_VALUE, max = Double.MAX_VALUE, checkRange = CheckRange.BOTH, required = false)
+	private Optional<Double> price;
+
+	@JsonProperty("Publisher")
+	@DtoProperty(type = Type.STRING, min = 1, checkRange = CheckRange.LOWER, required = true)
+	private Optional<String> publisher;
+
+	@JsonProperty("Translator")
+	@DtoProperty(type = Type.STRING, min = 1, checkRange = CheckRange.LOWER, required = false)
+	private Optional<String> translator;
+
+	public CreateBookRequest() {
 	}
 
-	public void setName(Optional<String> name) {
-		this.name = name;
+	public CreateBookRequest(CreateBookRequest createBookRequest) {
+		this.author = createBookRequest.author;
+		this.dateOfPublish = createBookRequest.dateOfPublish;
+		this.isbn = createBookRequest.isbn;
+		this.name = createBookRequest.name;
+		this.price = createBookRequest.price;
+		this.publisher = createBookRequest.publisher;
+		this.translator = createBookRequest.translator;
 	}
-
-	private Optional<String> author;
 
 	public Optional<String> getAuthor() {
 		return author;
@@ -25,17 +60,13 @@ public class CreateBookRequest {
 		this.author = author;
 	}
 
-	private Optional<String> translator;
-
-	public Optional<String> getTranslator() {
-		return translator;
+	public Optional<Date> getDateOfPublish() {
+		return dateOfPublish;
 	}
 
-	public void setTranslator(Optional<String> translator) {
-		this.translator = translator;
+	public void setDateOfPublish(Optional<Date> dateOfPublish) {
+		this.dateOfPublish = dateOfPublish;
 	}
-
-	private Optional<String> isbn;
 
 	public Optional<String> getIsbn() {
 		return isbn;
@@ -45,7 +76,21 @@ public class CreateBookRequest {
 		this.isbn = isbn;
 	}
 
-	private Optional<String> publisher;
+	public Optional<String> getName() {
+		return name;
+	}
+
+	public void setName(Optional<String> name) {
+		this.name = name;
+	}
+
+	public Optional<Double> getPrice() {
+		return price;
+	}
+
+	public void setPrice(Optional<Double> price) {
+		this.price = price;
+	}
 
 	public Optional<String> getPublisher() {
 		return publisher;
@@ -55,24 +100,12 @@ public class CreateBookRequest {
 		this.publisher = publisher;
 	}
 
-	private Optional<Date> dateOfPublish;
-
-	public Optional<Date> getDateOfPublish() {
-		return dateOfPublish;
+	public Optional<String> getTranslator() {
+		return translator;
 	}
 
-	public void setDateOfPublish(Optional<Date> dateOfPublish) {
-		this.dateOfPublish = dateOfPublish;
-	}
-
-	private Optional<Double> price;
-
-	public Optional<Double> getPrice() {
-		return price;
-	}
-
-	public void setPrice(Optional<Double> price) {
-		this.price = price;
+	public void setTranslator(Optional<String> translator) {
+		this.translator = translator;
 	}
 
 }
