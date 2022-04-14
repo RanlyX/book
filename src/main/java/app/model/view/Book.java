@@ -8,6 +8,30 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonPropertyOrder({ "Id", "Author", "DateOfPublish", "Isbn", "Name", "Price", "Publisher", "Translator" })
 public class Book {
 
+	@JsonProperty("Author")
+	private Author author;
+
+	@JsonProperty("DateOfPublish")
+	private Date dateOfPublish;
+
+	@JsonProperty("Id")
+	private Long id;
+
+	@JsonProperty("Isbn")
+	private String isbn;
+
+	@JsonProperty("Name")
+	private String name;
+
+	@JsonProperty("Price")
+	private Double price;
+
+	@JsonProperty("Publisher")
+	private Publisher publisher;
+
+	@JsonProperty("Translator")
+	private Translator translator;
+
 	public Book() {
 	}
 
@@ -25,9 +49,6 @@ public class Book {
 		this.translator = translator;
 	}
 
-	@JsonProperty("Author")
-	private Author author;
-
 	public Author getAuthor() {
 		return author;
 	}
@@ -36,9 +57,6 @@ public class Book {
 		this.author = author;
 		return this;
 	}
-
-	@JsonProperty("Id")
-	private Long id;
 
 	public Long getId() {
 		return id;
@@ -49,9 +67,6 @@ public class Book {
 		return this;
 	}
 
-	@JsonProperty("Name")
-	private String name;
-
 	public String getName() {
 		return name;
 	}
@@ -60,9 +75,6 @@ public class Book {
 		this.name = name;
 		return this;
 	}
-
-	@JsonProperty("Translator")
-	private Translator translator;
 
 	public Translator getTranslator() {
 		return translator;
@@ -73,9 +85,6 @@ public class Book {
 		return this;
 	}
 
-	@JsonProperty("Isbn")
-	private String isbn;
-
 	public String getIsbn() {
 		return isbn;
 	}
@@ -84,9 +93,6 @@ public class Book {
 		this.isbn = isbn;
 		return this;
 	}
-
-	@JsonProperty("Publisher")
-	private Publisher publisher;
 
 	public Publisher getPublisher() {
 		return publisher;
@@ -97,9 +103,6 @@ public class Book {
 		return this;
 	}
 
-	@JsonProperty("DateOfPublish")
-	private Date dateOfPublish;
-
 	public Date getDateOfPublish() {
 		return dateOfPublish;
 	}
@@ -108,9 +111,6 @@ public class Book {
 		this.dateOfPublish = dateOfPublish;
 		return this;
 	}
-
-	@JsonProperty("Price")
-	private Double price;
 
 	public Double getPrice() {
 		return price;
