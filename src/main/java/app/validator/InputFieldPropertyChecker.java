@@ -234,8 +234,7 @@ public interface InputFieldPropertyChecker<T> {
 		// getClass().getGenericSuperclass()).getActualTypeArguments()[0];
 		@SuppressWarnings("unchecked")
 		Class<T> clazz = (Class<T>) this.getGenericClass();
-		Constructor<?> constructor = clazz.getDeclaredConstructors()[1];
-		@SuppressWarnings("unchecked")
+		Constructor<T> constructor = clazz.getDeclaredConstructor(clazz);
 		T request = (T) constructor.newInstance(t);
 		Field[] fields = clazz.getDeclaredFields();
 		Map<Field, Method> getterMapper = getGetterMapper(clazz);
