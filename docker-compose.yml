@@ -1,0 +1,8 @@
+version: '3.3'
+services:
+  web:
+    build: # Build image from a Dockerfile
+      context: . # Dockerfile's postision
+    ports: # Port forwarding
+     - 8080:8080
+     - 8443:8443
