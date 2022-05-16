@@ -11,8 +11,8 @@ public class Book {
 	public Book() {
 	}
 
-	public Book(Long id, Author author, Date dateOfPublish, String isbn, String name, Double price, Publisher publisher,
-			Translator translator) {
+	public Book(Long id, String author, Date dateOfPublish, String isbn, String name, Double price, String publisher,
+			String translator) {
 		this.id = id;
 		this.author = author;
 		this.translator = translator;
@@ -26,13 +26,13 @@ public class Book {
 	}
 
 	@JsonProperty("Author")
-	private Author author;
+	private String author;
 
-	public Author getAuthor() {
+	public String getAuthor() {
 		return author;
 	}
 
-	public Book setAuthor(Author author) {
+	public Book setAuthor(String author) {
 		this.author = author;
 		return this;
 	}
@@ -62,13 +62,13 @@ public class Book {
 	}
 
 	@JsonProperty("Translator")
-	private Translator translator;
+	private String translator;
 
-	public Translator getTranslator() {
+	public String getTranslator() {
 		return translator;
 	}
 
-	public Book setTranslator(Translator translator) {
+	public Book setTranslator(String translator) {
 		this.translator = translator;
 		return this;
 	}
@@ -86,13 +86,13 @@ public class Book {
 	}
 
 	@JsonProperty("Publisher")
-	private Publisher publisher;
+	private String publisher;
 
-	public Publisher getPublisher() {
+	public String getPublisher() {
 		return publisher;
 	}
 
-	public Book setPublisher(Publisher publisher) {
+	public Book setPublisher(String publisher) {
 		this.publisher = publisher;
 		return this;
 	}

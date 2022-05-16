@@ -8,11 +8,9 @@ import app.model.Book;
 public class BookRender implements ModelRender<app.model.view.Book, Book> {
 
 	public app.model.view.Book render(Book book) {
-		return new app.model.view.Book().setId(book.getId()).setAuthor(new AuthorRender().render(book.getAuthor()))
-				.setIsbn(book.getIsbn()).setName(book.getName()).setPrice(book.getPrice())
-				.setDateOfPublish(book.getDateOfPublish())
-				.setPublisher(new PublisherRender().render(book.getPublisher()))
-				.setTranslator(new TranslatorRender().render(book.getTranslator()));
+		return new app.model.view.Book().setId(book.getId()).setAuthor(book.getAuthor()).setIsbn(book.getIsbn())
+				.setName(book.getName()).setPrice(book.getPrice()).setDateOfPublish(book.getDateOfPublish())
+				.setPublisher(book.getPublisher()).setTranslator(book.getTranslator());
 	}
 
 }

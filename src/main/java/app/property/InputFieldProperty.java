@@ -21,13 +21,13 @@ public @interface InputFieldProperty {
 	double max() default 999999999;
 
 	Type type() default Type.ANY;
-	
+
 	CheckRange checkRange() default CheckRange.NONE;
 
 	public enum Type {
 		ANY, BOOLEAN, BYTE, SHORT, INTEGER, LONG, FLOAT, DOUBLE, STRING, LIST, ENUM, DATE;
 	}
-	
+
 	public enum CheckRange {
 		NONE, UPPER, LOWER, BOTH;
 	}

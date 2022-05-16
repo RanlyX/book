@@ -16,7 +16,7 @@ public class Author {
 		this.name = name;
 		this.books = books;
 	}
-	
+
 	@JsonProperty("Id")
 	private Long id;
 
