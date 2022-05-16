@@ -4,11 +4,9 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -18,17 +16,17 @@ public class Book {
 
 	private Long id;
 	private String name;
-	private Author author;
-	private Translator translator;
+	private String author;
+	private String translator;
 	private String isbn;
-	private Publisher publisher;
+	private String publisher;
 	private Date dateOfPublish;
 	private Double price;
 
 	public Book() {
 	}
 
-	public Book(String name, Author author, Translator translator, String isbn, Publisher publisher, Date dateOfPublish,
+	public Book(String name, String author, String translator, String isbn, String publisher, Date dateOfPublish,
 			Double price) {
 		this.name = name;
 		this.translator = translator;
@@ -59,22 +57,22 @@ public class Book {
 		return this;
 	}
 
-	@OneToOne(fetch = FetchType.LAZY)
-	public Author getAuthor() {
+	@Column(name = "author")
+	public String getAuthor() {
 		return author;
 	}
 
-	public Book setAuthor(Author author) {
+	public Book setAuthor(String author) {
 		this.author = author;
 		return this;
 	}
 
-	@OneToOne(fetch = FetchType.LAZY)
-	public Translator getTranslator() {
+	@Column(name = "translator")
+	public String getTranslator() {
 		return translator;
 	}
 
-	public Book setTranslator(Translator translator) {
+	public Book setTranslator(String translator) {
 		this.translator = translator;
 		return this;
 	}
@@ -89,12 +87,12 @@ public class Book {
 		return this;
 	}
 
-	@OneToOne(fetch = FetchType.LAZY)
-	public Publisher getPublisher() {
+	@Column(name = "publisher")
+	public String getPublisher() {
 		return publisher;
 	}
 
-	public Book setPublisher(Publisher publisher) {
+	public Book setPublisher(String publisher) {
 		this.publisher = publisher;
 		return this;
 	}

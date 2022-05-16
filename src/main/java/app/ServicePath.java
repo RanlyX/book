@@ -24,4 +24,3 @@ public class ServicePath {
 	public static final String TRANSLATOR_COLLECTION = API_ENTRY + "/translators";
 	// TODO: path about translator
 }
-

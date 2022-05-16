@@ -10,8 +10,6 @@ import java.util.Map;
 import java.util.Optional;
 
 import app.property.InputFieldProperty;
-import app.property.InputFieldProperty.Type;
-import app.property.InputFieldProperty.CheckRange;
 
 public interface InputFieldPropertyChecker<T> {
 
@@ -23,7 +21,7 @@ public interface InputFieldPropertyChecker<T> {
 	default boolean isNull(Object optionalField) throws Exception {
 		Class<?> clazz = Optional.class;
 		Method isPresent = clazz.getDeclaredMethod("isPresent");
-		return ((boolean) isPresent.invoke(optionalField, null) == false);
+		return ((boolean) isPresent.invoke(optionalField) == false);
 	}
 
 	default Object getOptional(Object optionalField) throws Exception {
@@ -58,89 +56,89 @@ public interface InputFieldPropertyChecker<T> {
 	// TODO: check when compile is better
 	default void checkType(InputFieldProperty ifp, Object fieldObject) throws Exception {
 		switch (ifp.type()) {
-			case ANY:
-				break;
-			case BOOLEAN:
-				if (fieldObject instanceof Boolean)
-					throw new Exception(
-							"InputFieldProperty type \"" + ifp.type().toString() + "\" does not match field type \"Boolean\"");
-			case BYTE:
-				if (fieldObject instanceof Byte)
-					throw new Exception(
-							"InputFieldProperty type \"" + ifp.type().toString() + "\" does not match field type \"Byte\"");
-			case SHORT:
-				if (fieldObject instanceof Short)
-					throw new Exception(
-							"InputFieldProperty type \"" + ifp.type().toString() + "\" does not match field type \"Short\"");
-			case INTEGER:
-				if (fieldObject instanceof Integer)
-					throw new Exception(
-							"InputFieldProperty type \"" + ifp.type().toString() + "\" does not match field type \"Integer\"");
-			case LONG:
-				if (fieldObject instanceof Long)
-					throw new Exception(
-							"InputFieldProperty type \"" + ifp.type().toString() + "\" does not match field type \"Long\"");
-			case FLOAT:
-				if (fieldObject instanceof Float)
-					throw new Exception(
-							"InputFieldProperty type \"" + ifp.type().toString() + "\" does not match field type \"Float\"");
-			case DOUBLE:
-				if (fieldObject instanceof Double)
-					throw new Exception(
-							"InputFieldProperty type \"" + ifp.type().toString() + "\" does not match field type \"Double\"");
-			case STRING:
-				if (fieldObject instanceof String)
-					throw new Exception(
-							"InputFieldProperty type \"" + ifp.type().toString() + "\" does not match field type \"String\"");
-			case LIST:
-				if (fieldObject instanceof List)
-					throw new Exception(
-							"InputFieldProperty type \"" + ifp.type().toString() + "\" does not match field type \"List\"");
-			case ENUM:
-				if (fieldObject instanceof Enum)
-					throw new Exception(
-							"InputFieldProperty type \"" + ifp.type().toString() + "\" does not match field type \"Enum\"");
-			case DATE:
-				if (fieldObject instanceof Date)
-					throw new Exception(
-							"InputFieldProperty type \"" + ifp.type().toString() + "\" does not match field type \"Date\"");
-			default:
-				break;
+		case ANY:
+			break;
+		case BOOLEAN:
+			if (fieldObject instanceof Boolean)
+				throw new Exception("InputFieldProperty type \"" + ifp.type().toString()
+						+ "\" does not match field type \"Boolean\"");
+		case BYTE:
+			if (fieldObject instanceof Byte)
+				throw new Exception(
+						"InputFieldProperty type \"" + ifp.type().toString() + "\" does not match field type \"Byte\"");
+		case SHORT:
+			if (fieldObject instanceof Short)
+				throw new Exception("InputFieldProperty type \"" + ifp.type().toString()
+						+ "\" does not match field type \"Short\"");
+		case INTEGER:
+			if (fieldObject instanceof Integer)
+				throw new Exception("InputFieldProperty type \"" + ifp.type().toString()
+						+ "\" does not match field type \"Integer\"");
+		case LONG:
+			if (fieldObject instanceof Long)
+				throw new Exception(
+						"InputFieldProperty type \"" + ifp.type().toString() + "\" does not match field type \"Long\"");
+		case FLOAT:
+			if (fieldObject instanceof Float)
+				throw new Exception("InputFieldProperty type \"" + ifp.type().toString()
+						+ "\" does not match field type \"Float\"");
+		case DOUBLE:
+			if (fieldObject instanceof Double)
+				throw new Exception("InputFieldProperty type \"" + ifp.type().toString()
+						+ "\" does not match field type \"Double\"");
+		case STRING:
+			if (fieldObject instanceof String)
+				throw new Exception("InputFieldProperty type \"" + ifp.type().toString()
+						+ "\" does not match field type \"String\"");
+		case LIST:
+			if (fieldObject instanceof List)
+				throw new Exception(
+						"InputFieldProperty type \"" + ifp.type().toString() + "\" does not match field type \"List\"");
+		case ENUM:
+			if (fieldObject instanceof Enum)
+				throw new Exception(
+						"InputFieldProperty type \"" + ifp.type().toString() + "\" does not match field type \"Enum\"");
+		case DATE:
+			if (fieldObject instanceof Date)
+				throw new Exception(
+						"InputFieldProperty type \"" + ifp.type().toString() + "\" does not match field type \"Date\"");
+		default:
+			break;
 		}
 	}
 
 	default void checkRange(InputFieldProperty ifp, Object fieldObject) throws Exception {
 		switch (ifp.type()) {
-			case SHORT:
-				Short shortField = ((Short) fieldObject);
-				checkNumberRange(ifp, shortField);
-				break;
-			case INTEGER:
-				Integer integerField = ((Integer) fieldObject);
-				checkNumberRange(ifp, integerField);
-				break;
-			case LONG:
-				Long longField = ((Long) fieldObject);
-				checkNumberRange(ifp, longField);
-				break;
-			case FLOAT:
-				Float floatField = ((Float) fieldObject);
-				checkNumberRange(ifp, floatField);
-				break;
-			case DOUBLE:
-				Double doubleField = ((Double) fieldObject);
-				checkNumberRange(ifp, doubleField);
-				break;
-			case STRING:
-				String stringField = ((String) fieldObject);
-				checkStringLength(ifp, stringField);
-				break;
-			case LIST:
-				List<?> listField = ((List<?>) fieldObject);
-				checkListLength(ifp, listField);
-				break;
-			default:
-				break;
+		case SHORT:
+			Short shortField = ((Short) fieldObject);
+			checkNumberRange(ifp, shortField);
+			break;
+		case INTEGER:
+			Integer integerField = ((Integer) fieldObject);
+			checkNumberRange(ifp, integerField);
+			break;
+		case LONG:
+			Long longField = ((Long) fieldObject);
+			checkNumberRange(ifp, longField);
+			break;
+		case FLOAT:
+			Float floatField = ((Float) fieldObject);
+			checkNumberRange(ifp, floatField);
+			break;
+		case DOUBLE:
+			Double doubleField = ((Double) fieldObject);
+			checkNumberRange(ifp, doubleField);
+			break;
+		case STRING:
+			String stringField = ((String) fieldObject);
+			checkStringLength(ifp, stringField);
+			break;
+		case LIST:
+			List<?> listField = ((List<?>) fieldObject);
+			checkListLength(ifp, listField);
+			break;
+		default:
+			break;
 		}
 	}
 
@@ -150,98 +148,98 @@ public interface InputFieldPropertyChecker<T> {
 		InputFieldProperty.Type inputFieldType = ifp.type();
 		InputFieldProperty.CheckRange InputFieldCheckRangeType = ifp.checkRange();
 		switch (inputFieldType) {
-			case SHORT:
-				if (fieldObject instanceof Short) {
-					Short value = ((Short) fieldObject).shortValue();
-					switch (InputFieldCheckRangeType) {
-						case BOTH:
-							if (value < min.shortValue() || value > max.shortValue())
-								throw new Exception("Range Error");
-						case LOWER:
-							if (value < min.shortValue())
-								throw new Exception("Range Error");
-						case UPPER:
-							if (value > max.shortValue())
-								throw new Exception("Range Error");
-						default:
-							break;
-					}
+		case SHORT:
+			if (fieldObject instanceof Short) {
+				Short value = ((Short) fieldObject).shortValue();
+				switch (InputFieldCheckRangeType) {
+				case BOTH:
+					if (value < min.shortValue() || value > max.shortValue())
+						throw new Exception("Range Error");
+				case LOWER:
+					if (value < min.shortValue())
+						throw new Exception("Range Error");
+				case UPPER:
+					if (value > max.shortValue())
+						throw new Exception("Range Error");
+				default:
+					break;
 				}
-				break;
-			case INTEGER:
-				if (fieldObject instanceof Integer) {
-					Integer value = ((Integer) fieldObject).intValue();
-					switch (InputFieldCheckRangeType) {
-						case BOTH:
-							if (value < min.intValue() || value > max.intValue())
-								throw new Exception("Range Error");
-						case LOWER:
-							if (value < min.intValue())
-								throw new Exception("Range Error");
-						case UPPER:
-							if (value > max.intValue())
-								throw new Exception("Range Error");
-						default:
-							break;
-					}
+			}
+			break;
+		case INTEGER:
+			if (fieldObject instanceof Integer) {
+				Integer value = ((Integer) fieldObject).intValue();
+				switch (InputFieldCheckRangeType) {
+				case BOTH:
+					if (value < min.intValue() || value > max.intValue())
+						throw new Exception("Range Error");
+				case LOWER:
+					if (value < min.intValue())
+						throw new Exception("Range Error");
+				case UPPER:
+					if (value > max.intValue())
+						throw new Exception("Range Error");
+				default:
+					break;
 				}
-				break;
-			case LONG:
-				if (fieldObject instanceof Long) {
-					Long value = ((Long) fieldObject).longValue();
-					switch (InputFieldCheckRangeType) {
-						case BOTH:
-							if (value < min.longValue() || value > max.longValue())
-								throw new Exception("Range Error");
-						case LOWER:
-							if (value < min.longValue())
-								throw new Exception("Range Error");
-						case UPPER:
-							if (value > max.longValue())
-								throw new Exception("Range Error");
-						default:
-							break;
-					}
+			}
+			break;
+		case LONG:
+			if (fieldObject instanceof Long) {
+				Long value = ((Long) fieldObject).longValue();
+				switch (InputFieldCheckRangeType) {
+				case BOTH:
+					if (value < min.longValue() || value > max.longValue())
+						throw new Exception("Range Error");
+				case LOWER:
+					if (value < min.longValue())
+						throw new Exception("Range Error");
+				case UPPER:
+					if (value > max.longValue())
+						throw new Exception("Range Error");
+				default:
+					break;
 				}
-				break;
-			case FLOAT:
-				if (fieldObject instanceof Float) {
-					Float value = ((Float) fieldObject).floatValue();
-					switch (InputFieldCheckRangeType) {
-						case BOTH:
-							if (value < min.floatValue() || value > max.floatValue())
-								throw new Exception("Range Error");
-						case LOWER:
-							if (value < min.floatValue())
-								throw new Exception("Range Error");
-						case UPPER:
-							if (value > max.floatValue())
-								throw new Exception("Range Error");
-						default:
-							break;
-					}
+			}
+			break;
+		case FLOAT:
+			if (fieldObject instanceof Float) {
+				Float value = ((Float) fieldObject).floatValue();
+				switch (InputFieldCheckRangeType) {
+				case BOTH:
+					if (value < min.floatValue() || value > max.floatValue())
+						throw new Exception("Range Error");
+				case LOWER:
+					if (value < min.floatValue())
+						throw new Exception("Range Error");
+				case UPPER:
+					if (value > max.floatValue())
+						throw new Exception("Range Error");
+				default:
+					break;
 				}
-				break;
-			case DOUBLE:
-				if (fieldObject instanceof Double) {
-					Double value = ((Double) fieldObject).doubleValue();
-					switch (InputFieldCheckRangeType) {
-						case BOTH:
-							if (value < min || value > max)
-								throw new Exception("Range Error");
-						case LOWER:
-							if (value < min)
-								throw new Exception("Range Error");
-						case UPPER:
-							if (value > max)
-								throw new Exception("Range Error");
-						default:
-							break;
-					}
+			}
+			break;
+		case DOUBLE:
+			if (fieldObject instanceof Double) {
+				Double value = ((Double) fieldObject).doubleValue();
+				switch (InputFieldCheckRangeType) {
+				case BOTH:
+					if (value < min || value > max)
+						throw new Exception("Range Error");
+				case LOWER:
+					if (value < min)
+						throw new Exception("Range Error");
+				case UPPER:
+					if (value > max)
+						throw new Exception("Range Error");
+				default:
+					break;
 				}
-				break;
-			default:
-				break;
+			}
+			break;
+		default:
+			break;
 		}
 	}
 
@@ -251,17 +249,17 @@ public interface InputFieldPropertyChecker<T> {
 		InputFieldProperty.CheckRange inputFieldCheckRangeType = ifp.checkRange();
 		int listLength = list.size();
 		switch (inputFieldCheckRangeType) {
-			case BOTH:
-				if (listLength < min.intValue() || listLength > max.intValue())
-					throw new Exception("Range Error");
-			case LOWER:
-				if (listLength < min.intValue())
-					throw new Exception("Range Error");
-			case UPPER:
-				if (listLength > max.intValue())
-					throw new Exception("Range Error");
-			default:
-				break;
+		case BOTH:
+			if (listLength < min.intValue() || listLength > max.intValue())
+				throw new Exception("Range Error");
+		case LOWER:
+			if (listLength < min.intValue())
+				throw new Exception("Range Error");
+		case UPPER:
+			if (listLength > max.intValue())
+				throw new Exception("Range Error");
+		default:
+			break;
 		}
 	}
 
@@ -271,17 +269,17 @@ public interface InputFieldPropertyChecker<T> {
 		InputFieldProperty.CheckRange inputFieldCheckRangeType = ifp.checkRange();
 		int stringLength = string.length();
 		switch (inputFieldCheckRangeType) {
-			case BOTH:
-				if (stringLength < min.intValue() || stringLength > max.intValue())
-					throw new Exception("Range Error");
-			case LOWER:
-				if (stringLength < min.intValue())
-					throw new Exception("Range Error");
-			case UPPER:
-				if (stringLength > max.intValue())
-					throw new Exception("Range Error");
-			default:
-				break;
+		case BOTH:
+			if (stringLength < min.intValue() || stringLength > max.intValue())
+				throw new Exception("Range Error");
+		case LOWER:
+			if (stringLength < min.intValue())
+				throw new Exception("Range Error");
+		case UPPER:
+			if (stringLength > max.intValue())
+				throw new Exception("Range Error");
+		default:
+			break;
 		}
 	}
 
@@ -301,7 +299,7 @@ public interface InputFieldPropertyChecker<T> {
 			Method getter = getterMapper.get(field);
 			InputFieldProperty ifp = inputFieldPropertyMapper.get(field);
 			if (ifp != null && getter != null) {
-				Object fieldObject = getter.invoke(request, null);
+				Object fieldObject = getter.invoke(request);
 				// if property is required, but not found
 				if (ifp.required() && fieldObject == null) {
 					throw new Exception("Missing " + field.getName() + ", the property is required.");
