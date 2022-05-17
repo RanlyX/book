@@ -3,7 +3,6 @@ package app.validator;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,60 +50,6 @@ public interface InputFieldPropertyChecker<T> {
 			getterMapper.put(field, dp);
 		}
 		return getterMapper;
-	}
-
-	// TODO: check when compile is better
-	default void checkType(InputFieldProperty ifp, Object fieldObject) throws Exception {
-		switch (ifp.type()) {
-		case ANY:
-			break;
-		case BOOLEAN:
-			if (fieldObject instanceof Boolean)
-				throw new Exception("InputFieldProperty type \"" + ifp.type().toString()
-						+ "\" does not match field type \"Boolean\"");
-		case BYTE:
-			if (fieldObject instanceof Byte)
-				throw new Exception(
-						"InputFieldProperty type \"" + ifp.type().toString() + "\" does not match field type \"Byte\"");
-		case SHORT:
-			if (fieldObject instanceof Short)
-				throw new Exception("InputFieldProperty type \"" + ifp.type().toString()
-						+ "\" does not match field type \"Short\"");
-		case INTEGER:
-			if (fieldObject instanceof Integer)
-				throw new Exception("InputFieldProperty type \"" + ifp.type().toString()
-						+ "\" does not match field type \"Integer\"");
-		case LONG:
-			if (fieldObject instanceof Long)
-				throw new Exception(
-						"InputFieldProperty type \"" + ifp.type().toString() + "\" does not match field type \"Long\"");
-		case FLOAT:
-			if (fieldObject instanceof Float)
-				throw new Exception("InputFieldProperty type \"" + ifp.type().toString()
-						+ "\" does not match field type \"Float\"");
-		case DOUBLE:
-			if (fieldObject instanceof Double)
-				throw new Exception("InputFieldProperty type \"" + ifp.type().toString()
-						+ "\" does not match field type \"Double\"");
-		case STRING:
-			if (fieldObject instanceof String)
-				throw new Exception("InputFieldProperty type \"" + ifp.type().toString()
-						+ "\" does not match field type \"String\"");
-		case LIST:
-			if (fieldObject instanceof List)
-				throw new Exception(
-						"InputFieldProperty type \"" + ifp.type().toString() + "\" does not match field type \"List\"");
-		case ENUM:
-			if (fieldObject instanceof Enum)
-				throw new Exception(
-						"InputFieldProperty type \"" + ifp.type().toString() + "\" does not match field type \"Enum\"");
-		case DATE:
-			if (fieldObject instanceof Date)
-				throw new Exception(
-						"InputFieldProperty type \"" + ifp.type().toString() + "\" does not match field type \"Date\"");
-		default:
-			break;
-		}
 	}
 
 	default void checkRange(InputFieldProperty ifp, Object fieldObject) throws Exception {

@@ -10,11 +10,13 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import app.ServicePath;
 import app.input.book.CreateBookRequest;
+import app.input.book.UpdateBookRequest;
 import app.service.BookService;
 
 @RestController
@@ -42,6 +44,11 @@ public class BookController {
 	@GetMapping(value = ServicePath.BOOK, produces = MediaType.APPLICATION_JSON_VALUE)
 	public app.model.view.Book getBook(@PathVariable Long bookId) {
 		return this.bookService.getBook(bookId);
+	}
+
+	@PutMapping(value = ServicePath.BOOK, produces = MediaType.APPLICATION_JSON_VALUE)
+	public void updateBook(@PathVariable Long bookId, @RequestBody UpdateBookRequest updateBookRequest) {
+		this.bookService.updateBook(bookId, updateBookRequest);
 	}
 
 	@DeleteMapping(value = ServicePath.BOOK, produces = MediaType.APPLICATION_JSON_VALUE)
