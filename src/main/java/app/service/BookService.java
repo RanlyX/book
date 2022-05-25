@@ -34,7 +34,7 @@ public class BookService {
 
 	public app.model.view.Book addBook(CreateBookRequest createBookRequest) throws Exception {
 		CreateBookRequestValidator cbrValidator = new CreateBookRequestValidator();
-		cbrValidator.checkInputFieldProperty(createBookRequest);
+		cbrValidator.checkInputFieldProperty(createBookRequest, CreateBookRequest.class);
 		Book book = createBookAdapter.convert(createBookRequest);
 		return this.bookRender.render(bookRepository.save(book));
 	}

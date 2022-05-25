@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import app.property.InputFieldProperty;
+import app.property.DtoProperty;
 
 public interface InputFieldPropertyChecker<T> {
 
@@ -43,16 +43,16 @@ public interface InputFieldPropertyChecker<T> {
 		return getterMapper;
 	}
 
-	default Map<Field, InputFieldProperty> getInputFieldPropertyMapper(Class<T> requestClass) {
-		Map<Field, InputFieldProperty> getterMapper = new HashMap<>();
+	default Map<Field, DtoProperty> getInputFieldPropertyMapper(Class<T> requestClass) {
+		Map<Field, DtoProperty> getterMapper = new HashMap<>();
 		for (Field field : requestClass.getDeclaredFields()) {
-			InputFieldProperty dp = field.getAnnotation(InputFieldProperty.class);
+			DtoProperty dp = field.getAnnotation(DtoProperty.class);
 			getterMapper.put(field, dp);
 		}
 		return getterMapper;
 	}
 
-	default void checkRange(InputFieldProperty ifp, Object fieldObject) throws Exception {
+	default void checkRange(DtoProperty ifp, Object fieldObject) throws Exception {
 		switch (ifp.type()) {
 		case SHORT:
 			Short shortField = ((Short) fieldObject);
@@ -87,11 +87,11 @@ public interface InputFieldPropertyChecker<T> {
 		}
 	}
 
-	default void checkNumberRange(InputFieldProperty ifp, Object fieldObject) throws Exception {
+	default void checkNumberRange(DtoProperty ifp, Object fieldObject) throws Exception {
 		Double min = ifp.min();
 		Double max = ifp.max();
-		InputFieldProperty.Type inputFieldType = ifp.type();
-		InputFieldProperty.CheckRange InputFieldCheckRangeType = ifp.checkRange();
+		DtoProperty.Type inputFieldType = ifp.type();
+		DtoProperty.CheckRange InputFieldCheckRangeType = ifp.checkRange();
 		switch (inputFieldType) {
 		case SHORT:
 			if (fieldObject instanceof Short) {
@@ -188,10 +188,10 @@ public interface InputFieldPropertyChecker<T> {
 		}
 	}
 
-	default void checkListLength(InputFieldProperty ifp, List<?> list) throws Exception {
+	default void checkListLength(DtoProperty ifp, List<?> list) throws Exception {
 		Double min = ifp.min();
 		Double max = ifp.max();
-		InputFieldProperty.CheckRange inputFieldCheckRangeType = ifp.checkRange();
+		DtoProperty.CheckRange inputFieldCheckRangeType = ifp.checkRange();
 		int listLength = list.size();
 		switch (inputFieldCheckRangeType) {
 		case BOTH:
@@ -208,10 +208,10 @@ public interface InputFieldPropertyChecker<T> {
 		}
 	}
 
-	default void checkStringLength(InputFieldProperty ifp, String string) throws Exception {
+	default void checkStringLength(DtoProperty ifp, String string) throws Exception {
 		Double min = ifp.min();
 		Double max = ifp.max();
-		InputFieldProperty.CheckRange inputFieldCheckRangeType = ifp.checkRange();
+		DtoProperty.CheckRange inputFieldCheckRangeType = ifp.checkRange();
 		int stringLength = string.length();
 		switch (inputFieldCheckRangeType) {
 		case BOTH:
@@ -228,21 +228,19 @@ public interface InputFieldPropertyChecker<T> {
 		}
 	}
 
-	default void checkInputFieldProperty(T t) throws Exception {
+	default void checkInputFieldProperty(T t, Class clazz) throws Exception {
 		// Unknown reason cannot use
 		// Class<T> clazz = (Class<T>) ((ParameterizedType)
 		// getClass().getGenericSuperclass()).getActualTypeArguments()[0];
-		@SuppressWarnings("unchecked")
-		Class<T> clazz = (Class<T>) this.getGenericClass();
 		Constructor<?> constructor = clazz.getDeclaredConstructors()[1];
 		@SuppressWarnings("unchecked")
 		T request = (T) constructor.newInstance(t);
 		Field[] fields = clazz.getDeclaredFields();
 		Map<Field, Method> getterMapper = getGetterMapper(clazz);
-		Map<Field, InputFieldProperty> inputFieldPropertyMapper = getInputFieldPropertyMapper(clazz);
+		Map<Field, DtoProperty> inputFieldPropertyMapper = getInputFieldPropertyMapper(clazz);
 		for (Field field : fields) {
 			Method getter = getterMapper.get(field);
-			InputFieldProperty ifp = inputFieldPropertyMapper.get(field);
+			DtoProperty ifp = inputFieldPropertyMapper.get(field);
 			if (ifp != null && getter != null) {
 				Object fieldObject = getter.invoke(request);
 				// if property is required, but not found
@@ -262,7 +260,5 @@ public interface InputFieldPropertyChecker<T> {
 			}
 		}
 	}
-
-	Class<?> getGenericClass();
 
 }

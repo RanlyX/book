@@ -5,38 +5,38 @@ import java.util.Optional;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import app.property.InputFieldProperty;
-import app.property.InputFieldProperty.CheckRange;
-import app.property.InputFieldProperty.Type;
+import app.property.DtoProperty;
+import app.property.DtoProperty.CheckRange;
+import app.property.DtoProperty.Type;
 
 public class CreateBookRequest {
 
 	@JsonProperty("Author")
-	@InputFieldProperty(type = Type.STRING, min = 1, checkRange = CheckRange.LOWER, required = true)
+	@DtoProperty(type = Type.STRING, min = 1, checkRange = CheckRange.LOWER, required = true)
 	private Optional<String> author;
 
 	@JsonProperty("DateOfPublish")
-	@InputFieldProperty(type = Type.DATE, required = true)
+	@DtoProperty(type = Type.DATE, required = true)
 	private Optional<Date> dateOfPublish;
 
 	@JsonProperty("Isbn")
-	@InputFieldProperty(type = Type.STRING, min = 1, checkRange = CheckRange.LOWER, required = true)
+	@DtoProperty(type = Type.STRING, min = 1, checkRange = CheckRange.LOWER, required = true)
 	private Optional<String> isbn;
 
 	@JsonProperty("Name")
-	@InputFieldProperty(type = Type.STRING, min = 1, checkRange = CheckRange.LOWER, required = true)
+	@DtoProperty(type = Type.STRING, min = 1, checkRange = CheckRange.LOWER, required = true)
 	private Optional<String> name;
 
 	@JsonProperty("Price")
-	@InputFieldProperty(type = Type.DOUBLE, min = Double.MIN_VALUE, max = Double.MAX_VALUE, checkRange = CheckRange.BOTH, required = false)
+	@DtoProperty(type = Type.DOUBLE, min = Double.MIN_VALUE, max = Double.MAX_VALUE, checkRange = CheckRange.BOTH, required = false)
 	private Optional<Double> price;
 
 	@JsonProperty("Publisher")
-	@InputFieldProperty(type = Type.STRING, min = 1, checkRange = CheckRange.LOWER, required = true)
+	@DtoProperty(type = Type.STRING, min = 1, checkRange = CheckRange.LOWER, required = true)
 	private Optional<String> publisher;
 
 	@JsonProperty("Translator")
-	@InputFieldProperty(type = Type.STRING, min = 1, checkRange = CheckRange.LOWER, required = false)
+	@DtoProperty(type = Type.STRING, min = 1, checkRange = CheckRange.LOWER, required = false)
 	private Optional<String> translator;
 
 	public CreateBookRequest() {

@@ -10,7 +10,7 @@ import java.lang.annotation.Target;
 		ElementType.TYPE_PARAMETER })
 @Retention(RetentionPolicy.RUNTIME)
 @Inherited
-public @interface InputFieldProperty {
+public @interface DtoProperty {
 
 	boolean required() default false;
 
